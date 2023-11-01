@@ -65,3 +65,13 @@ music_files = [
     'media/audio/064-2008448-J.Salazar-J.Salazar - Mentiras _By SavageBeatz_.mp3',
     'media/audio/065-2065297-Anitek-TimesUp feat. Tab.mp3',
 ]
+meme_files = [
+    'media/meme/1636617839_2021-11-10-16_59_54.jpg',
+    'media/meme/1671008037224421279.jpg',
+    'media/meme/gNt2n7weDzY.jpg',
+    'media/meme/images.jpg',
+    'media/meme/og_og_1568354519229495743.jpg',
+    'media/meme/scale_1200.jpg',
+    'media/meme/scale_1201.jpg',
+]
+music_dir = 'media/audio/'

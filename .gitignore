@@ -1,5 +1,6 @@
 .env
 venv
-__pycahce__/
+__pycache__
 .idea
 media
+db.sqlite3

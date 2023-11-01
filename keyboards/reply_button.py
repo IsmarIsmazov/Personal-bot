@@ -14,8 +14,4 @@ async def start_button():
     return markup
 
 
-async def profile_button():
-    markup = ReplyKeyboardMarkup()
-    playlist_button = InlineKeyboardButton(text='Плейлист')
-    markup.add(playlist_button)
-    return markup
+
