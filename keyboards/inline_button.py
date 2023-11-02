@@ -32,3 +32,16 @@ async def delete_saved_music():
     delete_music_button = InlineKeyboardButton('Удалить', callback_data='delete_music_call')
     markup.add(delete_music_button)
     return markup
+
+
+async def games_choice():
+    markup = InlineKeyboardMarkup()
+    dice_game = InlineKeyboardButton('🎲', callback_data='dice_game_call')
+    bowling_game = InlineKeyboardButton('🎳', callback_data='bowling_game_call')
+    football_game = InlineKeyboardButton('⚽', callback_data='football_game_call')
+    basketball_game = InlineKeyboardButton('🏀', callback_data='basketball_game_call')
+    darts_game = InlineKeyboardButton('🎯', callback_data='darts_game_call')
+    jackpot_game = InlineKeyboardButton('🎰', callback_data='jackpot_game_call')
+    markup.add(dice_game, bowling_game, football_game)
+    markup.add(basketball_game, darts_game, jackpot_game)
+    return markup

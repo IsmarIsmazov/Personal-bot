@@ -3,14 +3,14 @@ from config import dp
 import logging
 
 from database import sql_commands
-from handlers import start, menu, callback
+from handlers import start, menu, callback, game
 
 
 async def onstart_up(_):
     db = sql_commands.Database()
     db.sql_create()
 
-
+game.register_games_handler(dp=dp)
 callback.register_callback_handlers(dp=dp)
 menu.register_menu_handlers(dp=dp)
 start.register_start_handlers(dp=dp)

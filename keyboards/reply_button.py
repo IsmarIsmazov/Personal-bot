@@ -14,4 +14,8 @@ async def start_button():
     return markup
 
 
-
+async def menu_button():
+    markup = ReplyKeyboardMarkup()
+    game_button = InlineKeyboardButton(text='Игры')
+    markup.add(game_button)
+    return markup

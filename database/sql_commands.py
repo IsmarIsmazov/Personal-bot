@@ -12,6 +12,7 @@ class Database:
             print('Database connected')
         self.connection.execute(sql_queryies.CREATE_TABLE_PROFILE)
         self.connection.execute(sql_queryies.CREATE_TABLE_MUSIC)
+        self.connection.execute(sql_queryies.CREATE_TABLE_MEME)
 
     # USERS
     def sql_insert_telegram_users_command(self, telegram_id, username):
@@ -41,4 +42,19 @@ class Database:
             'music': row[2]
         }
         return self.cursor.execute(sql_queryies.SELECT_MUSIC_QUERY,
+                                   (telegram_id,)).fetchall()
+
+    # MEME
+    def sql_insert_meme_list_command(self, telegram_id, meme):
+        self.cursor.execute(sql_queryies.INSERT_MEME_QUERY,
+                            (None, telegram_id, meme))
+        self.connection.commit()
+
+    def sql_select_meme_list_command(self, telegram_id):
+        self.cursor.row_factory = lambda cursor, row: {
+            'id': row[0],
+            'telegram_id': row[1],
+            'meme': row[2]
+        }
+        return self.cursor.execute(sql_queryies.SELECT_MEME_QUERY,
                                    (telegram_id,)).fetchall()

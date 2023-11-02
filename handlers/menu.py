@@ -4,11 +4,15 @@ from config import bot, ADMINS
 from constants import music_files, meme_files
 from database.sql_commands import Database
 from keyboards.inline_button import save_music, save_meme, profile_button
+from keyboards.reply_button import menu_button
 
 
 async def menu(message: types.Message):
-    await message.answer("*Вы вошли в меню*", parse_mode='MarkdownV2')
-
+    await message.answer("*Вы вошли в меню*", parse_mode='MarkdownV2', reply_markup=await menu_button())
+    try:
+        await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+    except Exception as e:
+        print(f"Ошибка при удалении сообщения: {e}")
 
 async def profile(message: types.Message):
     user = Database().sql_select_telegram_users_command(telegram_id=message.from_user.id)
@@ -19,9 +23,16 @@ async def profile(message: types.Message):
                              reply_markup=await profile_button())
     else:
         await message.answer('Напишите /start  для начала работы с ботом')
-
+    try:
+        await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+    except Exception as e:
+        print(f"Ошибка при удалении сообщения: {e}")
 
 async def music(message: types.Message):
+    try:
+        await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+    except Exception as e:
+        print(f"Ошибка при удалении сообщения: {e}")
     random_music = random.choice(music_files)
     music_list = open(random_music, 'rb')
     await bot.send_message(chat_id=message.from_user.id, text='*Подождите пожалуйста, музыка грузится\.\.\.\n'
@@ -39,7 +50,10 @@ async def meme(message: types.Message):
     meme_list = open(random_meme, 'rb')
     await bot.send_photo(chat_id=message.from_user.id,
                          photo=meme_list, reply_markup=await save_meme())
-
+    try:
+        await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+    except Exception as e:
+        print(f"Ошибка при удалении сообщения: {e}")
 
 def register_menu_handlers(dp: Dispatcher):
     dp.register_message_handler(menu, regexp=r'^Меню$')
